@@ -18,6 +18,10 @@ body {
 }
 
 /*     COMMON STYLES     */
+:root {
+    --brand_clr: teal;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -25,11 +29,11 @@ body {
 }
 
 .brand_Color {
-    color: teal;
+    color: var(--brand_clr);
 }
 
 .primaryBtn {
-    background-color: teal;
+    background-color: var(--brand_clr);
     color: white;
     outline: 0;
     border: 0;
@@ -62,7 +66,12 @@ body {
     cursor: pointer;
 }
 
-nav ul li {
+.toggle {
+    display: none;
+    font-size: 30px;
+}
+
+nav ul li, .cart li {
     display: inline-block;
     padding: 5px;
 
@@ -82,7 +91,7 @@ nav ul li a {
 }
 
 nav ul li:hover a {
-    color: teal;
+    color: var(--brand_clr);
 }
 
 .la-shopping-cart, .la-search {
@@ -96,8 +105,6 @@ nav ul li:hover a {
     grid-template-columns: 1fr 1fr;
     gap: 140px;
     margin-top: 40px;
-    /* height: calc(100vh - 70px); */
-    /* min-height: 500px; */
     align-items: center;
     justify-items: center;
     align-content: space-between;
@@ -142,8 +149,23 @@ nav ul li:hover a {
     width: 440px;
     height: 444px;
     overflow: hidden;
-    animation: slide2 1.5s linear;
+    animation:slide2 1.5s linear, moving 3s ease-in-out infinite;
 }
+
+@keyframes moving {
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* .hero_img:hover {
+    transform: scale(1.1) translateX(30px);
+    transition: transform .7s ease-in;
+} */
 
 @keyframes slide2 {
     0% {
@@ -254,7 +276,7 @@ nav ul li:hover a {
 }
 
 .seeMore a {
-    color: teal;
+    color: var(--brand_clr);
     text-decoration: none;
     font-weight: bold;
     font-size: 16px;
@@ -328,7 +350,7 @@ nav ul li:hover a {
 /*     FOOTER     */
 footer {
     text-align: center;
-    background-color: teal;
+    background-color: #0A0826;
     height: 240px;
     color: white;
     display: flex;
@@ -356,7 +378,7 @@ footer span {
 }
 
 footer span a {
-    color: black;
+    color: white;
     font-size: 35px;
     margin-right: 10px;
     background-color: #ffffff3b;
@@ -438,12 +460,16 @@ footer span a {
 
 @media only screen and (min-width: 688px) and (max-width:992px) {
     .menu {
-        flex-direction: column;
-        justify-content: flex-end;
+        align-items: center;
+        justify-content: space-between;
     }
 
     nav {
         display: none;
+    }
+
+    .toggle {
+        display: inline-block;
     }
 
     #hero_Section {
